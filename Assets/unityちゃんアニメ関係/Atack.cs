@@ -23,16 +23,34 @@ public class Atack : MonoBehaviour
             
         }
 
-        if (Input.GetMouseButtonDown(1)){
-            animator.SetBool("Kick", true);
+        // if (Input.GetMouseButtonDown(1)){
+        //     animator.SetBool("Kick", true);
  
-            //右足コライダーをオンにする
-            rightToeBase.enabled = true;
+        //     //右足コライダーをオンにする
+        //     rightToeBase.enabled = true;
  
-            //一定時間後にコライダーの機能をオフにする
-            Invoke("ColliderReset", 1.5f);
+        //     //一定時間後にコライダーの機能をオフにする
+        //     Invoke("ColliderReset", 1.5f);
+        // }else{
+        //     animator.SetBool("Kick", false);
+        // }
+
+        if(Input.GetMouseButtonDown(1) && animator.GetCurrentAnimatorStateInfo(0).IsName("BlendTree")){
+            animator.SetBool ("Kick", true);		
         }else{
             animator.SetBool("Kick", false);
+        }
+
+        if(Input.GetMouseButtonDown(1) && animator.GetCurrentAnimatorStateInfo(0).IsName("Kick1")){
+            animator.SetBool ("Kick2", true);
+        }else{
+            animator.SetBool("Kick2", false);
+        }
+
+        if(Input.GetMouseButtonDown(1) && animator.GetCurrentAnimatorStateInfo(0).IsName("Kick2")){
+            animator.SetBool ("Kick3", true);
+        }else{
+            animator.SetBool("Kick3", false);
         }
     }
 
