@@ -95,85 +95,87 @@ public class UnityChanMovement : MonoBehaviour
         this.transform.localEulerAngles=localAngle;//変更した値を代入
     }
 
-//右回り
-void rightTurn(float uniAng,float goAng){
-    float nextAng;
+    //右回り
+    void rightTurn(float uniAng,float goAng){
+        float nextAng;
 
-    nextAng = localAngle.y+RtRate;
-    if(nextAng > 360){
-        nextAng -=360;
-    }
-    if(goAng+RtRate>=360){
-        localAngle.y = goAng<=nextAng || nextAng<=goAng-360+RtRate ? goAng : nextAng;
-    }else{
-        localAngle.y = goAng<=nextAng && nextAng<=goAng+RtRate ? goAng : nextAng;
-    }
-}
-
-//左回り
-void leftTurn(float uniAng,float goAng){
-    float nextAng;
-
-    nextAng = localAngle.y-RtRate;
-    if(nextAng < 0){
-        nextAng +=360;
-    }
-    if(goAng-RtRate<=0){
-        localAngle.y = goAng+360-RtRate<=nextAng||nextAng<=goAng ? goAng : nextAng;
-    }else{
-        localAngle.y = goAng>=nextAng&&nextAng>=goAng-RtRate ?  goAng : nextAng;
-    }
-}
-
-//移動キー入力判定　反対のキーが入力されていた場合、先に押されていたキーを優先する
-int getOrie(){
-
-    //有効なキーを判定
-    if(wsKey=='0'){
-        if(Input.GetKey(KeyCode.W)) {
-            wsKey='W';
-        }else if(Input.GetKey(KeyCode.S)) {
-            wsKey='S';
+        nextAng = localAngle.y+RtRate;
+        if(nextAng > 360){
+            nextAng -=360;
         }
-    }else if(!(Input.GetKey(KeyCode.W))&&wsKey=='W'||!(Input.GetKey(KeyCode.S))&&wsKey=='S'){
-        wsKey='0';
-    }
-    if(adKey=='0'){
-        if(Input.GetKey(KeyCode.A)) {
-            adKey='A';
-        }else if(Input.GetKey(KeyCode.D)) {
-            adKey='D';
-        }
-    }else if(!(Input.GetKey(KeyCode.A))&&adKey=='A'||!(Input.GetKey(KeyCode.D))&&adKey=='D'){
-        adKey='0';
-    }
-
-
-    //方角の選択
-    if(wsKey=='W'){
-        switch(adKey){
-            case 'A': return 315;
-            case 'D': return 45;
-            case '0': return 0;
-        }
-        
-    }else if(wsKey=='S'){
-        switch(adKey){
-            case 'A': return 225;
-            case 'D': return 135;
-            case '0': return 180;
-        }
-    }else{
-        switch(adKey){
-            case 'A': return 270;
-            case 'D': return 90;
+        if(goAng+RtRate>=360){
+            localAngle.y = goAng<=nextAng || nextAng<=goAng-360+RtRate ? goAng : nextAng;
+        }else{
+            localAngle.y = goAng<=nextAng && nextAng<=goAng+RtRate ? goAng : nextAng;
         }
     }
-    return -1;
-}
 
-    // アップデートごとに読み込む
+    //左回り
+    void leftTurn(float uniAng,float goAng){
+        float nextAng;
+
+        nextAng = localAngle.y-RtRate;
+        if(nextAng < 0){
+            nextAng +=360;
+        }
+        if(goAng-RtRate<=0){
+            localAngle.y = goAng+360-RtRate<=nextAng||nextAng<=goAng ? goAng : nextAng;
+        }else{
+            localAngle.y = goAng>=nextAng&&nextAng>=goAng-RtRate ?  goAng : nextAng;
+        }
+    }
+
+    //移動キー入力判定　反対のキーが入力されていた場合、先に押されていたキーを優先する
+    int getOrie(){
+
+        //有効なキーを判定
+        if(wsKey=='0'){
+            if(Input.GetKey(KeyCode.W)) {
+                wsKey='W';
+            }else if(Input.GetKey(KeyCode.S)) {
+                wsKey='S';
+            }
+        }else if(!(Input.GetKey(KeyCode.W))&&wsKey=='W'||!(Input.GetKey(KeyCode.S))&&wsKey=='S'){
+            wsKey='0';
+        }
+        if(adKey=='0'){
+            if(Input.GetKey(KeyCode.A)) {
+                adKey='A';
+            }else if(Input.GetKey(KeyCode.D)) {
+                adKey='D';
+            }
+        }else if(!(Input.GetKey(KeyCode.A))&&adKey=='A'||!(Input.GetKey(KeyCode.D))&&adKey=='D'){
+            adKey='0';
+        }
+
+
+        //方角の選択
+        if(wsKey=='W'){
+            switch(adKey){
+                case 'A': return 315;
+                case 'D': return 45;
+                case '0': return 0;
+            }
+            
+        }else if(wsKey=='S'){
+            switch(adKey){
+                case 'A': return 225;
+                case 'D': return 135;
+                case '0': return 180;
+            }
+        }else{
+            switch(adKey){
+                case 'A': return 270;
+                case 'D': return 90;
+            }
+        }
+        return -1;
+    }
     void Update () {
+        
+    }
+    // アップデートごとに読み込む
+    void FixedUpdate() {
         animator.SetFloat ("Speed", speed);	                    //Animatorへ現在の状態をセット
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("Landing")){
             fallDis = this.GetComponent<Jump> ().dis;
@@ -184,7 +186,7 @@ int getOrie(){
             }
             speed*=reaction;
         }
-        transform.position += transform.forward * speed/100;    //前へ移動
+        this.transform.position += this.transform.forward * speed/100;    //前へ移動
         
 
         int orie = getOrie();   //進む方角の選択
@@ -193,5 +195,5 @@ int getOrie(){
         }else if(speed > 0.05){ //進行方向未入力
             speed-=SpeedRate;   //止まる
         }
-    }
+}
 }
