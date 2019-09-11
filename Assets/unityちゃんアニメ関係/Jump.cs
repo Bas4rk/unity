@@ -12,7 +12,9 @@ public class Jump : MonoBehaviour
     public Rigidbody playerRigid;
 	private Animator animator;
 	public Transform ray;
-	public CapsuleCollider collider;  
+	public CapsuleCollider mineCollider;
+	public GameObject side_collider;
+	public CapsuleCollider sideCollider;  
 
 
 	RaycastHit hit;	// Rayが衝突したコライダーの情報を得る
@@ -25,7 +27,8 @@ public class Jump : MonoBehaviour
         playerRigid = this.GetComponent<Rigidbody>();
 		animator = GetComponent <Animator> ();
 		ray = GameObject.Find("Ray").transform; 
-		collider = this.GetComponent<CapsuleCollider> ();
+		mineCollider = this.GetComponent<CapsuleCollider> ();
+		sideCollider = side_collider.GetComponent<CapsuleCollider>();
     }
 	void Jumpping()
 	{
@@ -37,7 +40,8 @@ public class Jump : MonoBehaviour
 		Text score_text = score_object.GetComponent<Text> ();
 		Text score_text1 = score_object1.GetComponent<Text> ();
 
-		collider.height =  animator.GetFloat("ColliderHeight"); //　コライダの高さの変更
+		mineCollider.height = animator.GetFloat("ColliderHeight"); //　コライダの高さの変更
+		sideCollider.height = animator.GetFloat("ColliderHeight")-0.3f;
 
 		Debug.DrawLine (ray.position, ray.position + Vector3.down * 0.5f, Color.blue);
 		if (Physics.SphereCast (new Ray (ray.position, Vector3.down), 0.5f, 0.5f)) {  //　地面に接地しているか判定

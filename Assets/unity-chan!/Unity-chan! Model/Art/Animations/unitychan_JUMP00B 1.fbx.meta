@@ -999,7 +999,7 @@ ModelImporter:
           curve:
           - serializedVersion: 3
             time: 0
-            value: 1.3
+            value: 1.4
             inSlope: 0
             outSlope: 0
             tangentMode: 0
@@ -1345,7 +1345,32 @@ ModelImporter:
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
+      curves:
+      - name: Curve
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1.6
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
       events: []
       transformMask:
       - path: 
@@ -1680,7 +1705,7 @@ ModelImporter:
           curve:
           - serializedVersion: 3
             time: 0
-            value: 1.2
+            value: 1.0028229
             inSlope: 0
             outSlope: 0
             tangentMode: 0
@@ -1688,8 +1713,26 @@ ModelImporter:
             inWeight: 0
             outWeight: 0
           - serializedVersion: 3
+            time: 0.56681883
+            value: 1.2861753
+            inSlope: 1.2141532
+            outSlope: 1.2141532
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.47123352
+          - serializedVersion: 3
+            time: 0.6892681
+            value: 1.4719536
+            inSlope: 1.1349187
+            outSlope: 1.1349187
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.4893772
+            outWeight: 0.33333334
+          - serializedVersion: 3
             time: 1
-            value: 1.6
+            value: 1.6028229
             inSlope: 0
             outSlope: 0
             tangentMode: 0
