@@ -27,6 +27,7 @@ public class UnityChanMovement : MonoBehaviour
 
     //インタフェース オブジェクト
     public GameObject score_object;
+    
     // public GameObject score_object1;
     public GameObject score_object2;
     public GameObject score_object3;
