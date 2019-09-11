@@ -11,6 +11,7 @@ public class Atack : MonoBehaviour
     public Collider leftToeBase;
 
     public char nextClick;
+    public int kick;
 
     
     void Start(){
@@ -18,14 +19,11 @@ public class Atack : MonoBehaviour
         rightToeBase = GameObject.Find("Character1_RightToeBase").GetComponent<SphereCollider>();
         leftToeBase = GameObject.Find("Character1_LeftToeBase").GetComponent<SphereCollider>();
         nextClick='0';
+        kick=0;
     }
 
     // Update is called once per frame
     void Update(){
-        //左クリックでkick
-        if(nextClick=='0'){
-            
-        }
 
         // if (Input.GetMouseButtonDown(1)){
         //     animator.SetBool("Kick", true);
@@ -39,28 +37,43 @@ public class Atack : MonoBehaviour
         //     animator.SetBool("Kick", false);
         // }
 
-        if(Input.GetMouseButtonDown(1) && animator.GetCurrentAnimatorStateInfo(0).IsName("BlendTree")){
-            animator.SetBool ("Kick", true);
-            leftToeBase.enabled = true;
-            Invoke("LeftColliderReset", 1.0f);		
-        }else{
-            animator.SetBool("Kick", false);
-        }
+        // if(Input.GetMouseButtonDown(1) && animator.GetCurrentAnimatorStateInfo(0).IsName("BlendTree")){
+        //     animator.SetBool ("Kick", true);
+        //     leftToeBase.enabled = true;
+        //     Invoke("LeftColliderReset", 1.0f);		
+        // }else{
+        //     animator.SetBool("Kick", false);
+        // }
 
-        if(Input.GetMouseButtonDown(1) && animator.GetCurrentAnimatorStateInfo(0).IsName("Kick1")){
-            animator.SetBool ("Kick2", true);
-            rightToeBase.enabled = true;
-            Invoke("RightColliderReset", 1.0f);
-        }else{
-            animator.SetBool("Kick2", false);
-        }
+        // if(Input.GetMouseButtonDown(1) && animator.GetCurrentAnimatorStateInfo(0).IsName("Kick1")){
+        //     animator.SetBool ("Kick2", true);
+        //     rightToeBase.enabled = true;
+        //     Invoke("RightColliderReset", 1.0f);
+        // }else{
+        //     animator.SetBool("Kick2", false);
+        // }
 
-        if(Input.GetMouseButtonDown(1) && animator.GetCurrentAnimatorStateInfo(0).IsName("Kick2")){
-            animator.SetBool ("Kick3", true);
-            leftToeBase.enabled = true;
-            Invoke("LeftColliderReset", 1.0f);		
-        }else{
-            animator.SetBool("Kick3", false);
+        // if(Input.GetMouseButtonDown(1) && animator.GetCurrentAnimatorStateInfo(0).IsName("Kick2")){
+        //     animator.SetBool ("Kick3", true);
+        //     leftToeBase.enabled = true;
+        //     Invoke("LeftColliderReset", 1.0f);		
+        // }else{
+        //     animator.SetBool("Kick3", false);
+        // }
+
+        if(Input.GetMouseButtonDown(1)){
+            kick++;
+            animator.SetInteger ("Kick", kick);
+            if(kick%2==1){
+                leftToeBase.enabled = true;
+                Invoke("LeftColliderReset", 1.0f);		
+            }else{
+                rightToeBase.enabled = true;
+                Invoke("RightColliderReset", 1.0f);
+            }	
+        }else if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime>=0.99){
+            kick=0;
+            animator.SetInteger("Kick", kick);
         }
     }
 
