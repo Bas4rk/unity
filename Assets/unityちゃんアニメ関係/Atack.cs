@@ -10,16 +10,21 @@ public class Atack : MonoBehaviour
     public Collider rightToeBase;
     public Collider leftToeBase;
 
-    public char nextClick;
-    public int kick;
+    public int nextClick;
+    public int kickNum;
+    public bool kick;
+
+    const int NO_CLICK=0;
+    const int RIGHT_CLICK=2;
 
     
     void Start(){
         animator = GetComponent<Animator>();
         rightToeBase = GameObject.Find("Character1_RightToeBase").GetComponent<SphereCollider>();
         leftToeBase = GameObject.Find("Character1_LeftToeBase").GetComponent<SphereCollider>();
-        nextClick='0';
-        kick=0;
+        nextClick=0;
+        kickNum=0;
+        kick=false;
     }
 
     // Update is called once per frame
@@ -60,21 +65,28 @@ public class Atack : MonoBehaviour
         // }else{
         //     animator.SetBool("Kick3", false);
         // }
+        if(Input.GetMouseButtonDown(1)&&nextClick==NO_CLICK){
+            nextClick=RIGHT_CLICK;
+        }
 
-        if(Input.GetMouseButtonDown(1)){
-            kick++;
-            animator.SetInteger ("Kick", kick);
-            if(kick%2==1){
+        if(nextClick==RIGHT_CLICK&&kick==false){
+            kickNum++;
+            kick=true;
+            animator.SetBool ("Kick", true);
+            if(kickNum%2==1){
                 leftToeBase.enabled = true;
                 Invoke("LeftColliderReset", 1.0f);		
             }else{
                 rightToeBase.enabled = true;
                 Invoke("RightColliderReset", 1.0f);
-            }	
-        }else if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime>=0.99){
-            kick=0;
-            animator.SetInteger("Kick", kick);
+            }
+            nextClick=NO_CLICK;
+            Invoke("KickReset", 0.59f);
         }
+        // else if(animator.GetCurrentAnimatorStateInfo(0) == animator.GetCurrentAnimatorStateInfo(1).normalizedTime){
+        //     kick=0;
+        //     animator.SetInteger("Kick", kick);
+        // }
     }
 
 
@@ -87,6 +99,14 @@ public class Atack : MonoBehaviour
         // handCollider.enabled = false;
         leftToeBase.enabled = false;
     }
+
+    private void KickReset(){
+        kick=false;
+        if(nextClick!=RIGHT_CLICK){
+            animator.SetBool ("Kick", kick);
+        }
+    }
+
     void Hit(){
 
     }
