@@ -15,14 +15,15 @@ public class UnityChanMovement : MonoBehaviour
 
     const float SpeedRate=0.1f; //歩き速度
     const float RtRate=5f;      //振り向き速度
+    const float ATK_SPEED=2f;   //攻撃中速度
 
     const float WekFall=2f;     //落下高所判定:低所
     const float medFall=4f;     //落下高所判定:中所
     const float StrFall=6f;     //落下高所判定:高所
 
-    float speed = 0f;           //現在速度
-    float reaction = 0f;        //落下の反動 着地時の速度制御
-    float fallDis = 0f;        //Jumpスクリプトのdis。落下した最大の高さ
+    private float speed = 0f;           //現在速度
+    private float reaction = 0f;        //落下の反動 着地時の速度制御
+    private float fallDis = 0f;        //Jumpスクリプトのdis。落下した最大の高さ
 
 
     //インタフェース オブジェクト
@@ -196,5 +197,14 @@ public class UnityChanMovement : MonoBehaviour
         }else if(speed > 0.05){ //進行方向未入力
             speed-=SpeedRate;   //止まる
         }
-}
+        if(animator.GetBool("Atk")){
+            speed=ATK_SPEED;
+        }
+    }
+    public float getSpeed(){
+        return speed;
+    }
+    public void setSpeed(float speed){
+        this.speed=speed;
+    }
 }

@@ -20151,7 +20151,7 @@ Transform:
   m_GameObject: {fileID: 3162578761270929269}
   m_LocalRotation: {x: -0.023811344, y: 0.01439187, z: -0.5187163, w: 0.8544936}
   m_LocalPosition: {x: -0.084295675, y: 0.04771042, z: -0.0039216853}
-  m_LocalScale: {x: 1.0000006, y: 0.9999997, z: 1.0000002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3162578761270442939}
   m_RootOrder: 0
@@ -22557,6 +22557,7 @@ GameObject:
   - component: {fileID: 3162578761270929198}
   - component: {fileID: 3162578761270929190}
   - component: {fileID: 3162578761270929196}
+  - component: {fileID: 3162578761270929197}
   - component: {fileID: 3162578761270929195}
   m_Layer: 0
   m_Name: unitychan_dynamic
@@ -22668,7 +22669,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3162578761270929189}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5cff92f2da249844892af106b16725fd, type: 3}
   m_Name: 
@@ -22676,6 +22677,22 @@ MonoBehaviour:
   rightToeBase: {fileID: 3162578761270928900}
   leftToeBase: {fileID: 0}
   nextClick: 0
+  kickNum: 0
+  kick: 0
+--- !u!114 &3162578761270929197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3162578761270929189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b31d46090a911c4684349639dbd44d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightToeBase: {fileID: 0}
+  leftToeBase: {fileID: 0}
   kickNum: 0
   kick: 0
 --- !u!114 &3162578761270929198
