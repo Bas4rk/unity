@@ -6,17 +6,21 @@ public class Kick : StateMachineBehaviour
 {
 
     const float ATK_MOVE_SPEED = 2f;
+    public int kickNum = 0;
     // private Animator animator;
     // public Collider leftToeBase;
 
     void Start(){
-       
+      
     }
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex){
         animator.SetBool("Kick", false);
         animator.SetBool("Atk", true);
+        kickNum = animator.GetInteger("KickNum");
+        kickNum++;
+        animator.SetInteger("KickNum",kickNum);
         // leftToeBase.enabled = true;
     }
 
