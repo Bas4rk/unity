@@ -25,16 +25,15 @@ public class Atack2 : MonoBehaviour
     void FixedUpdate(){
         if(Input.GetMouseButtonDown(1)){
             animator.SetBool("Kick", true);
-            //kickNum++;
             kickNum = animator.GetInteger("KickNum");
 
-            if(kickNum%2==1){	
-                rightToeBase.enabled = true;
-                Invoke("RightColliderReset", 1.0f);			
-            }else{
-                leftToeBase.enabled = true;
-                Invoke("LeftColliderReset", 1.0f);			
-            }
+            // if(kickNum%2==1){	
+            //     rightToeBase.enabled = true;
+            //     Invoke("RightColliderReset", 1.0f);			
+            // }else{
+            //     leftToeBase.enabled = true;
+            //     Invoke("LeftColliderReset", 1.0f);			
+            // }
         }
     }
 
