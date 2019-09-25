@@ -2,50 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Kick : StateMachineBehaviour
+public class LeftPunch1 : StateMachineBehaviour
 {
+    const float ATK_START=0.35f;
+    const float ATK_END=0.55f;
 
-    const float ATK_MOVE_SPEED = 2f;
-    const float ATK_START=10f;
-
-    public int kickNum = 0;
-    public float MovingTime;
-    public Collider rightToeBase;
-    public Collider leftToeBase;
+    public float movingTime;
+    public Collider character1_LeftHand;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex){
-
-        rightToeBase = GameObject.Find("Character1_RightToeBase").GetComponent<SphereCollider>();
-        // leftToeBase = GameObject.Find("Character1_LeftToeBase").GetComponent<SphereCollider>();
-
-        animator.SetBool("Kick", false);
+        animator.SetBool("Punch", false);
         animator.SetBool("Atk", true);
-        kickNum = animator.GetInteger("KickNum");
-        kickNum++;
-        animator.SetInteger("KickNum",kickNum);
-
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        rightToeBase = GameObject.Find("Character1_RightToeBase").GetComponent<SphereCollider>();
-        leftToeBase = GameObject.Find("Character1_LeftToeBase").GetComponent<SphereCollider>();
-        MovingTime = animator.GetFloat("MovingTime");
+        character1_LeftHand = GameObject.Find("Character1_LeftHand").GetComponent<SphereCollider>();
+        movingTime = animator.GetFloat("MovingTime");
 
-        if(MovingTime==1){
-            if(kickNum%2==0){	
-                    rightToeBase.enabled = true;		
-            }else{
-                    leftToeBase.enabled = true;
-            }
+        if(ATK_START<=movingTime&&movingTime<=ATK_END){
+            character1_LeftHand.enabled = true;
         }else{
-             if(kickNum%2==1){	
-                leftToeBase.enabled = false;		
-            }else{
-                rightToeBase.enabled = false;	
-            }
+            character1_LeftHand.enabled = false;		
         }
     }
 

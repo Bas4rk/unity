@@ -30,7 +30,7 @@ public class unitycamera : MonoBehaviour
         //unitychan = GameObject.Find("unitychan_dynamic").transform.position;
         fulcrum.position = player.transform.position;//unitychan;
 
-        if (Input.GetMouseButton(0)) {
+        if (Input.GetMouseButton(2)) {
             X_Rotation = Input.GetAxis("Mouse X");
             Y_Rotation = Input.GetAxis("Mouse Y");
 

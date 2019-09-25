@@ -10,7 +10,6 @@ public class ResetParameters : StateMachineBehaviour
        animator.SetBool("Kick", false);
        animator.SetBool("Punch", false);
        animator.SetBool("Atk", false);
-       animator.SetInteger("KickNum",0);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
