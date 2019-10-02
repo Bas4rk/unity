@@ -24,8 +24,4 @@ public class Atack2 : MonoBehaviour
     void Hit(){
 
     }
-
-    void TestScript(float start,int end,Object atkObject){
-        Debug.Log(start+" "+end);
-    }
 }
