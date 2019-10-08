@@ -49,7 +49,7 @@ public class Jump : MonoBehaviour
 			animator.SetBool ("Fall", false);
 		    animator.SetBool ("Landing", false);
 
-			if (Input.GetKeyDown(KeyCode.Space) && animator.GetCurrentAnimatorStateInfo(0).IsName("BlendTree")){
+			if (Input.GetKeyDown(KeyCode.Space) && animator.GetCurrentAnimatorStateInfo(0).IsName("BlendTree")&&!animator.GetBool("Down")){
 				Invoke("Jumpping", 0.2f);
 				animator.SetBool ("Jump", true);		
         	}
@@ -67,7 +67,7 @@ public class Jump : MonoBehaviour
 			if (Physics.SphereCast(new Ray (ray.position, Vector3.down), 0.5f, out hit, 30f)) if(dis<hit.distance)  dis=hit.distance; //ここあとで綺麗にかく。
 
 			Debug.DrawLine (ray.position, ray.position + Vector3.down * 1.5f, Color.green);
-			if (Physics.Linecast (ray.position, ray.position + Vector3.down * 1.5f) && dis >2.0f) { //disの値で落下の反動つかるか判定してる。きれいにかく。
+			if (Physics.Linecast (ray.position, ray.position + Vector3.down * 1.5f) && dis >3.0f) { //disの値で落下の反動つかるか判定してる。きれいにかく。
 				animator.SetBool ("Landing", true);
 				score_text.text = "着地";
 			}

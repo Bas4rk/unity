@@ -188,23 +188,18 @@ public class UnityChanMovement : MonoBehaviour
             }
             speed*=reaction;
         }
-        this.transform.position += this.transform.forward * speed/100;    //前へ移動
-        
-
-        int orie = getOrie();   //進む方角の選択
-        if(orie>=0){
-            move(orie);         //進行方向へ進む
-        }else if(speed > 0.05){ //進行方向未入力
-            speed-=SpeedRate;   //止まる
-        }
-        if(animator.GetBool("Atk")){
+        if(animator.GetBool("Down")){
+            speed=0f;
+        }else if(animator.GetBool("Atk")){
             speed=ATK_SPEED;
+        }else{
+            int orie = getOrie();   //進む方角の選択
+            if(orie>=0){
+                move(orie);         //進行方向へ進む
+            }else if(speed > 0.05){ //進行方向未入力
+                speed-=SpeedRate;   //止まる
+            }
         }
-    }
-    public float getSpeed(){
-        return speed;
-    }
-    public void setSpeed(float speed){
-        this.speed=speed;
+        this.transform.position += this.transform.forward * speed/100;    //前へ移動
     }
 }
