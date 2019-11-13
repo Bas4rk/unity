@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BulletMovement : MonoBehaviour
 {
-    const float SPEED=0.5f;
-    const float LIFE_TIME=5;
-    const int INPACT_LEVEL=3;
+    const float SPEED=0.5f;     //弾速
+    const float LIFE_TIME=1;    //生存時間
+    const int INPACT_LEVEL=3;   //ヒット時ののけぞり威力
 
     public Animator unityAnimator;
 

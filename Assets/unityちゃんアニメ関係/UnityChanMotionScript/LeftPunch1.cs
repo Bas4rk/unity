@@ -6,6 +6,7 @@ public class LeftPunch1 : StateMachineBehaviour
 {
     const float ATK_START=0.35f;
     const float ATK_END=0.55f;
+    const int ATK_DAMAGE=2;
 
     public float movingTime;
     public Collider character1_LeftHand;
@@ -14,6 +15,7 @@ public class LeftPunch1 : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex){
         animator.SetBool("Punch", false);
         animator.SetBool("Atk", true);
+        animator.SetInteger("AtkDamage",ATK_DAMAGE);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
