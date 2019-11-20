@@ -8,7 +8,7 @@ public class CubelAI : MonoBehaviour
     const float TIME_OUT=3f;        //射撃間隔
     const float TARAGET_SEARCH=20f; //索敵範囲
     const float TARGET_DISTANCE=4f; //対象との適正距離
-    const float BACK_SPEED=-0.03f;  //後退速度
+    const float BACK_SPEED=-0.02f;  //後退速度
     const int MAX_HP=10;            //最大HP
 
     private float timeElapsed;
@@ -26,6 +26,7 @@ public class CubelAI : MonoBehaviour
         m_navMeshAgent=GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
         animator.SetInteger("HP",MAX_HP);
+        TargetObject= GameObject.Find("unitychan_dynamic");
     }
 
     // Update is called once per frame

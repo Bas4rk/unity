@@ -10,12 +10,13 @@ public class UnityChanMovement : MonoBehaviour
 
     Vector3 localAngle;
 
-    const float MaxWalkSpeed=2f;//最大歩き速度
-    const float MaxRunSpeed=10f;//最大走り速度
+    const float SpeedRate=4f; //歩き速度
+    const float MaxWalkSpeed=SpeedRate*5;//最大歩き速度
+    const float MaxRunSpeed=SpeedRate*22;//最大走り速度
 
-    const float SpeedRate=0.1f; //歩き速度
+    
     const float RtRate=5f;      //振り向き速度
-    const float ATK_SPEED=2f;   //攻撃中速度
+    const float ATK_SPEED=SpeedRate*7;   //攻撃中速度
 
     const float WekFall=2f;     //落下高所判定:低所
     const float medFall=4f;     //落下高所判定:中所
@@ -54,16 +55,14 @@ public class UnityChanMovement : MonoBehaviour
 
 
         moveRt(uniAngY,goToAngY);//向き変更
-        
-        if(speed < MaxWalkSpeed ){
-            speed+=SpeedRate;  
-        }
         if (Input.GetKey("left shift")) { 
-            if(speed < MaxRunSpeed){  
+            if(speed < MaxWalkSpeed ){
                 speed+=SpeedRate;
-            }   
-        }else if(speed > MaxWalkSpeed ){
-            speed-=SpeedRate;
+            }else if(speed > MaxWalkSpeed ){
+                speed-=SpeedRate;
+            }
+        }else if(speed < MaxRunSpeed){
+            speed+=SpeedRate;
         }
     }
 
@@ -179,15 +178,15 @@ public class UnityChanMovement : MonoBehaviour
     // アップデートごとに読み込む
     void FixedUpdate() {
         animator.SetFloat ("Speed", speed);	                    //Animatorへ現在の状態をセット
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Landing")){
-            fallDis = this.GetComponent<Jump> ().dis;
-            if(fallDis > StrFall){//着地時横移動速度制御
-                reaction = 0.7f;
-            }else{
-                reaction = 0.8f;
-            }
-            speed*=reaction;
-        }
+        // if(animator.GetCurrentAnimatorStateInfo(0).IsName("Landing")){   //着地時モーション処理
+        //     fallDis = this.GetComponent<Jump> ().dis;
+        //     if(fallDis > StrFall){//着地時横移動速度制御
+        //         reaction = 0.7f;
+        //     }else{
+        //         reaction = 0.8f;
+        //     }
+        //     speed*=reaction;
+        // }
         if(animator.GetBool("Down")){
             speed=0f;
         }else if(animator.GetBool("Atk")){
@@ -196,10 +195,11 @@ public class UnityChanMovement : MonoBehaviour
             int orie = getOrie();   //進む方角の選択
             if(orie>=0){
                 move(orie);         //進行方向へ進む
-            }else if(speed > 0.05){ //進行方向未入力
+            }else if(speed > 0){ //進行方向未入力
                 speed-=SpeedRate;   //止まる
             }
         }
-        this.transform.position += this.transform.forward * speed/100;    //前へ移動
+        speed=Mathf.Floor(speed);       //誤差切り捨て
+        this.transform.position += this.transform.forward * speed/1000;    //前へ移動
     }
 }
