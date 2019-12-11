@@ -13,15 +13,26 @@ public class Atack2 : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate(){
-        if(Input.GetMouseButtonDown(0)){
+        if(Input.GetMouseButtonDown(0) && animator.GetBool("Sword")){
+            animator.SetBool("SwordAttack",true);
+        }else if(Input.GetMouseButtonDown(0)){
             animator.SetBool("Punch",true);
         }
         if(Input.GetMouseButtonDown(1)){
             animator.SetBool("Kick", true);
         }
+        
     }
 
     void Hit(){
 
+    }
+
+    void FootL(){
+
+    }
+
+    void FootR(){
+        
     }
 }

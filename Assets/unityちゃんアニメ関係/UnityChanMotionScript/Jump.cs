@@ -64,6 +64,10 @@ public class Jump : MonoBehaviour
 				animator.SetBool ("Jump", true);
 				Invoke("Jumpping",JUMP_START_TIME);
         	}
+			if (Input.GetKeyDown(KeyCode.Space) && animator.GetCurrentAnimatorStateInfo(0).IsName("SwordBlendTree")&&!animator.GetBool("Down")&&!animator.GetBool("Jump")){
+				animator.SetBool ("Jump", true);
+				Invoke("Jumpping",JUMP_START_TIME);
+        	}
 		} else if (!animator.GetBool ("Fall")) {  //Fallへの移行判定
 			// dis = 0f;
 			// Debug.DrawLine (ray.position, ray.position + Vector3.down * 1.0f, Color.red);

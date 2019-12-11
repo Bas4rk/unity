@@ -9,7 +9,7 @@ public class CubelAI : MonoBehaviour
     const float TARAGET_SEARCH=20f; //索敵範囲
     const float TARGET_DISTANCE=4f; //対象との適正距離
     const float BACK_SPEED=-0.02f;  //後退速度
-    const int MAX_HP=10;            //最大HP
+    const int MAX_HP=10000000;            //最大HP
 
     private float timeElapsed;
     public GameObject Bullet;
@@ -42,17 +42,17 @@ public class CubelAI : MonoBehaviour
                     m_navMeshAgent.SetDestination(TargetObject.transform.position);
                 }
                 // 一定時間ごとに弾を射出する
-                timeElapsed += Time.deltaTime;
-                if(timeElapsed>=TIME_OUT){
-                    GameObject obj = (GameObject)Resources.Load("Bullet");
-                    Instantiate(obj,transform.position,transform.rotation);
-                    timeElapsed=0.0f;
-                }
+                // timeElapsed += Time.deltaTime;
+                // if(timeElapsed>=TIME_OUT){
+                //     GameObject obj = (GameObject)Resources.Load("Bullet");
+                //     Instantiate(obj,transform.position,transform.rotation);
+                //     timeElapsed=0.0f;
+                // }
 
 
-                if(m_navMeshAgent.remainingDistance<TARGET_DISTANCE){//近づきすぎた場合に後ろへ下がる
-                    this.transform.position += this.transform.forward * BACK_SPEED;
-                }
+                // if(m_navMeshAgent.remainingDistance<TARGET_DISTANCE){//近づきすぎた場合に後ろへ下がる
+                //     this.transform.position += this.transform.forward * BACK_SPEED;
+                // }
 
                 //　プレイヤーの方向を取得
                 var playerDirection = new Vector3(TargetObject.transform.position.x, transform.position.y, TargetObject.transform.position.z) - transform.position;

@@ -189,7 +189,9 @@ public class UnityChanMovement : MonoBehaviour
         // }
         if(animator.GetBool("Down")){
             speed=0f;
-        }else if(animator.GetBool("Atk")){
+        }else if(animator.GetBool("Atk")&&Input.GetKey(KeyCode.W)){
+            speed=ATK_SPEED;
+        }else if(animator.GetBool("SwordAttack")&&Input.GetKey(KeyCode.W)){
             speed=ATK_SPEED;
         }else{
             int orie = getOrie();   //進む方角の選択
